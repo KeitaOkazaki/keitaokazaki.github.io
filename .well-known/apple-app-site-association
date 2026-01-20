@@ -3,5 +3,14 @@
     "apps": [
       "NMHXPNYD8G.jp.mufg.cr.app4dev"
     ]
+  },
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "NMHXPNYD8G.jp.mufg.cr.app4dev",
+        "paths": [ "*" ]
+      }
+    ]
   }
 }
