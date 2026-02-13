@@ -73,11 +73,11 @@
                 ],
                 timeout: 60000,
                 authenticatorSelection: {
-                    authenticatorAttachment: "cross-platform",  // platform と不一致
-                    residentKey: "required",  // required と一致
-                    userVerification: "required"  // required と一致
+                    authenticatorAttachment: "cross-platform",  // APIのまま
+                    residentKey: "false",  // APIのまま
+                    userVerification: "preferred"  // APIのまま
                 },
-                attestation: "none"  // none と一致
+                attestation: "direct"  // // APIのまま
             };
 
             const credential = await navigator.credentials.create({
