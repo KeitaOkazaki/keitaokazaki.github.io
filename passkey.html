@@ -21,6 +21,7 @@
     <h1>Passkey 連携テスト</h1>
     <p>テストドメイン: <b>keitaokazaki.github.io</b></p>
     
+    <button onclick="createPasskey()">➕ Passkeyを登録</button>
     <button onclick="loginWithPasskey()">🔑 スマホの鍵でログイン</button>
     
     <div id="log">ステータス: 待機中...</div>
@@ -40,6 +41,55 @@
     function bufferFromBase64(base64) {
         const bin = window.atob(base64.replace(/-/g, '+').replace(/_/g, '/'));
         return Uint8Array.from(bin, c => c.charCodeAt(0));
+    }
+
+    async function createPasskey() {
+        try {
+            log("Passkey登録を開始しています...");
+
+            // MainActivity.kt の createPasskey() と完全に一致するパラメータ
+            const publicKeyCredentialCreationOptions = {
+                // Kotlinの createPasskey() 内の challenge と一致
+                challenge: bufferFromBase64("dGVzdC1jaGFsbGVuZ2UtMTIzNDU2Nz"),
+                rp: {
+                    id: "keitaokazaki.github.io",
+                    name: "FIDO2 Test App333"
+                },
+                user: {
+                    // Kotlinの user.id と一致（base64）
+                    id: bufferFromBase64("dXNlci1pZC0xMjM0NTY4"),
+                    name: "user@testuser_test3333",
+                    displayName: "Test User52"
+                },
+                pubKeyCredParams: [
+                    {
+                        type: "public-key",
+                        alg: -7  // ES256
+                    },
+                    {
+                        type: "public-key",
+                        alg: -257  // RS256
+                    }
+                ],
+                timeout: 60000,
+                authenticatorSelection: {
+                    authenticatorAttachment: "platform",  // platform と一致
+                    residentKey: "required",  // required と一致
+                    userVerification: "required"  // required と一致
+                },
+                attestation: "none"  // none と一致
+            };
+
+            const credential = await navigator.credentials.create({
+                publicKey: publicKeyCredentialCreationOptions
+            });
+
+            console.log("Passkey created:", credential);
+            log("✅ Passkey登録成功！\nウェブ側で登録したパスキーをアプリで使用できます。", true);
+        } catch (err) {
+            console.error(err);
+            log("❌ 登録エラー: " + err.message + "\n\nヒント: ブラウザがPasskeyをサポートしているか、生体認証が設定されているか確認してください。");
+        }
     }
 
     async function loginWithPasskey() {
