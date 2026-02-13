@@ -53,13 +53,13 @@
                 challenge: bufferFromBase64("dGVzdC1jaGFsbGVuZ2UtMTIzNDU2Nz"),
                 rp: {
                     id: "keitaokazaki.github.io",
-                    name: "FIDO2 Test App333"
+                    name: "FIDO2 Test App"
                 },
                 user: {
                     // Kotlinの user.id と一致（base64）
                     id: bufferFromBase64("dXNlci1pZC0xMjM0NTY4"),
-                    name: "user@testuser_test3333",
-                    displayName: "Test User52"
+                    name: "user@testuser_test",
+                    displayName: "Test User"
                 },
                 pubKeyCredParams: [
                     {
@@ -73,7 +73,7 @@
                 ],
                 timeout: 60000,
                 authenticatorSelection: {
-                    authenticatorAttachment: "cross-platform",  // platform と一致
+                    authenticatorAttachment: "cross-platform",  // platform と不一致
                     residentKey: "required",  // required と一致
                     userVerification: "required"  // required と一致
                 },
