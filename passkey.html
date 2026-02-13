@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passkey 相互連携テスト</title>
+    <style>
+        body { font-family: -apple-system, system-ui, sans-serif; padding: 2rem; background: #f0f2f5; display: flex; justify-content: center; }
+        .card { background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h1 { font-size: 1.5rem; margin-bottom: 1rem; color: #1c1e21; text-align: center; }
+        p { color: #666; font-size: 0.9rem; text-align: center; }
+        button { width: 100%; padding: 0.8rem; background: #007bff; color: white; border: none; border-radius: 0.5rem; font-weight: bold; cursor: pointer; font-size: 1rem; transition: background 0.2s; margin-top: 1rem; }
+        button:hover { background: #0056b3; }
+        #log { margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 0.5rem; font-size: 0.85rem; color: #65676b; white-space: pre-wrap; border: 1px solid #ddd; min-height: 50px; }
+        .success { color: #28a745; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Passkey 連携テスト</h1>
+    <p>テストドメイン: <b>keitaokazaki.github.io</b></p>
+    
+    <button onclick="loginWithPasskey()">🔑 スマホの鍵でログイン</button>
+    
+    <div id="log">ステータス: 待機中...</div>
+</div>
+
+<script>
+    const logDiv = document.getElementById('log');
+    function log(msg, isSuccess = false) {
+        if(isSuccess) {
+            logDiv.innerHTML = `<span class="success">${msg}</span>`;
+        } else {
+            logDiv.innerText = msg;
+        }
+    }
+
+    // Base64をUint8Arrayに変換 (AndroidのKotlinコードと一致させるため)
+    function bufferFromBase64(base64) {
+        const bin = window.atob(base64.replace(/-/g, '+').replace(/_/g, '/'));
+        return Uint8Array.from(bin, c => c.charCodeAt(0));
+    }
+
+    async function loginWithPasskey() {
+        try {
+            log("生体認証を呼び出しています...");
+
+            // あなたの MainActivity.kt に記載されているパラメータと完全に一致させています
+            const publicKeyCredentialRequestOptions = {
+                // Kotlinの authenticatePasskey() 内の challenge と一致
+                challenge: bufferFromBase64("dGVzdC1jaGFsbGVuZ2UtbG9naW4tMTIzNDU2Nzg5MA"),
+                rpId: "keitaokazaki.github.io",
+                userVerification: "required",
+                timeout: 60000
+            };
+
+            const assertion = await navigator.credentials.get({
+                publicKey: publicKeyCredentialRequestOptions
+            });
+
+            console.log("Success:", assertion);
+            log("✅ 認証成功！\nウェブ側でアプリが作成したパスキーを認識しました。", true);
+        } catch (err) {
+            console.error(err);
+            log("❌ 認証エラー: " + err.message + "\n\nヒント: アプリで登録済みか、Googleアカウントが同期されているか確認してください。");
+        }
+    }
+</script>
+
+</body>
+</html>
