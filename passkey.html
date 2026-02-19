@@ -66,15 +66,11 @@
                         type: "public-key",
                         alg: -7  // ES256
                     },
-                    {
-                        type: "public-key",
-                        alg: -257  // RS256
-                    }
                 ],
                 timeout: 60000,
                 authenticatorSelection: {
                     authenticatorAttachment: "cross-platform",  // APIのまま
-                    residentKey: "false",  // APIのまま
+                    requireResidentKey: false,  // APIのまま
                     userVerification: "preferred"  // APIのまま
                 },
                 attestation: "direct"  // // APIのまま
