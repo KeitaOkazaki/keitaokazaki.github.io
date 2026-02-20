@@ -69,8 +69,8 @@
                 ],
                 timeout: 60000,
                 authenticatorSelection: {
-                    authenticatorAttachment: "platform",
-                    residentKey: "required",
+                    authenticatorAttachment: "cross-platform",
+                    requireResidentKey: false,  // APIのまま
                     userVerification: "preferred"  // APIのまま
                 },
                 attestation: "direct"  // // APIのまま
