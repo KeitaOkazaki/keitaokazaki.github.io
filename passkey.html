@@ -69,10 +69,11 @@
                 ],
                 timeout: 60000,
                 authenticatorSelection: {
-                    authenticatorAttachment: "platform",
-                    userVerification: "required"  // APIのまま
+                    residentKey: "required",
+                    requireResidentKey: true,
+                    userVerification: "required"
                 },
-                attestation: "direct"  // // APIのまま
+                attestation: "direct"
             };
 
             const credential = await navigator.credentials.create({
