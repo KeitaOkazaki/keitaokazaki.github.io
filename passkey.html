@@ -83,7 +83,7 @@
             console.log("NATIVE_SIGNAL:REGISTRATION_SUCCESS", credential);
             log("✅ Passkey登録成功！\nウェブ側で登録したパスキーをアプリで使用できます。", true);
             
-            // 通知 Native：注册成功
+            // Native通信、登録成功を通知
             if (window.AndroidBridge) {
                 window.AndroidBridge.onRegistrationSuccess(JSON.stringify({
                     id: credential.id,
@@ -94,7 +94,7 @@
             console.error("NATIVE_SIGNAL:REGISTRATION_ERROR", err.message);
             log("❌ 登録エラー: " + err.message + "\n\nヒント: ブラウザがPasskeyをサポートしているか、生体認証が設定されているか確認してください。");
             
-            // 通知 Native：注册失败
+            // Native通信、登録失敗を通知
             if (window.AndroidBridge) {
                 window.AndroidBridge.onRegistrationError(err.message);
             }
@@ -121,7 +121,7 @@
             console.log("NATIVE_SIGNAL:LOGIN_SUCCESS", assertion);
             log("✅ 認証成功！\nウェブ側でアプリが作成したパスキーを認識しました。", true);
             
-            // 通知 Native：登录成功
+            // Navtive通信、ログイン成功を通知
             if (window.AndroidBridge) {
                 window.AndroidBridge.onLoginSuccess(JSON.stringify({
                     id: assertion.id,
@@ -132,7 +132,7 @@
             console.error("NATIVE_SIGNAL:LOGIN_ERROR", err.message);
             log("❌ 認証エラー: " + err.message + "\n\nヒント: アプリで登録済みか、Googleアカウントが同期されているか確認してください。");
             
-            // 通知 Native：登录失败
+            // Navtive通信、ログイン失敗を通知
             if (window.AndroidBridge) {
                 window.AndroidBridge.onLoginError(err.message);
             }
