@@ -6,9 +6,9 @@
       ],
       "target": {
         "namespace": "android_app",
-        "package_name": "com.example.fido2_app",
+        "package_name": "jp.mufg.cr.app4.dev",
         "sha256_cert_fingerprints": [
-          "11:04:18:2C:6F:1F:96:05:5F:1B:3B:0D:97:31:DB:FD:11:BF:99:11:D7:A7:4C:78:AF:75:DD:9C:FF:E9:21:1B"
+          "B8:31:DA:24:CB:AA:05:93:08:79:EB:FB:55:2E:23:B4:ED:6C:48:DE:DD:48:5A:27:EF:AC:38:D1:C1:C7:EC:4E"
         ]
       }
     }
