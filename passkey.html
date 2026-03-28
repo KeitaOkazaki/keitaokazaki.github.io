@@ -28,6 +28,16 @@
 </div>
 
 <script>
+
+    function bufferToBase64(buffer) {
+        return btoa(String.fromCharCode(...new Uint8Array(buffer)));
+    }
+
+
+    function bufferToString(buffer) {
+        return new TextDecoder().decode(buffer);
+    }
+
     const logDiv = document.getElementById('log');
     function log(msg, isSuccess = false) {
         if(isSuccess) {
@@ -79,6 +89,17 @@
             const credential = await navigator.credentials.create({
                 publicKey: publicKeyCredentialCreationOptions
             });
+
+            const response = credential.response;
+            const clientDataJSON = bufferToString(response.clientDataJSON); 
+            const attestationObject = bufferToBase64(response.attestationObject); 
+
+            console.log("=== 詳細 ===");
+            console.log("Credential ID:", credential.id);
+            console.log("clientDataJSON :", clientDataJSON);
+            console.log("attestationObject (Base64):", attestationObject);
+
+            log(`✅ 成功！\nOrigin: ${JSON.parse(clientDataJSON).origin}\nID: ${credential.id}`, true);
 
             console.log("NATIVE_SIGNAL:REGISTRATION_SUCCESS", credential);
             log("✅ Passkey登録成功！\nウェブ側で登録したパスキーをアプリで使用できます。", true);
