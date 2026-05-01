@@ -1,7 +1,8 @@
 {
   "webcredentials": {
     "apps": [
-      "NMHXPNYD8G.jp.mufg.cr.app4dev"
+      "NMHXPNYD8G.jp.mufg.cr.app4dev",
+      "NMHXPNYD8G.com.teamlab.mufg.stub"
     ]
   },
   "applinks": {
