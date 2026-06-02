@@ -6,6 +6,19 @@
       ],
       "target": {
         "namespace": "android_app",
+        "package_name": "jp.mufg.cr.app4.dev",
+        "sha256_cert_fingerprints": [
+          "B8:31:DA:24:CB:AA:05:93:08:79:EB:FB:55:2E:23:B4:ED:6C:48:DE:DD:48:5A:27:EF:AC:38:D1:C1:C7:EC:4E"
+        ]
+      }
+    },
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls",
+        "delegate_permission/common.get_login_creds"
+      ],
+      "target": {
+        "namespace": "android_app",
         "package_name": "jp.mufg.cr.app4.stg",
         "sha256_cert_fingerprints": [
           "D4:45:AD:0B:B5:B9:17:D9:78:ED:14:DF:41:23:51:4D:18:77:C9:25:51:60:EA:89:22:96:37:42:B0:01:CD:E0"
