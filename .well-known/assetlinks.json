@@ -37,5 +37,44 @@
           "B8:31:DA:24:CB:AA:05:93:08:79:EB:FB:55:2E:23:B4:ED:6C:48:DE:DD:48:5A:27:EF:AC:38:D1:C1:C7:EC:4E"
         ]
       }
+    },
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls",
+        "delegate_permission/common.get_login_creds"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "jp.mufg.cr.app6.dev",
+        "sha256_cert_fingerprints": [
+          "B8:31:DA:24:CB:AA:05:93:08:79:EB:FB:55:2E:23:B4:ED:6C:48:DE:DD:48:5A:27:EF:AC:38:D1:C1:C7:EC:4E"
+        ]
+      }
+    },
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls",
+        "delegate_permission/common.get_login_creds"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "jp.mufg.cr.app6.stg",
+        "sha256_cert_fingerprints": [
+          "1A:75:CF:B7:A5:B4:72:01:6F:A9:89:D3:03:7C:62:30:05:4E:B7:AF:E2:D1:78:8F:19:2C:C3:CF:4D:C9:CE:58"
+        ]
+      }
+    },
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls",
+        "delegate_permission/common.get_login_creds"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "jp.mufg.cr.app6",
+        "sha256_cert_fingerprints": [
+          "CA:DC:4D:EA:BA:4B:A2:E5:8A:C4:87:DB:6F:C8:4A:74:19:38:7F:02:40:47:F5:43:84:E0:AE:77:69:5C:08:5C"
+        ]
+      }
     }
 ]
